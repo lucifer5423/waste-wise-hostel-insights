@@ -12,7 +12,7 @@ import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
-const mealTypes = ["Breakfast", "Lunch", "Dinner"];
+const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snacks"];
 const foodItems = ["Rice", "Bread", "Vegetables", "Meat", "Fruits", "Soup", "Dessert"];
 
 const DataEntryCard = () => {
