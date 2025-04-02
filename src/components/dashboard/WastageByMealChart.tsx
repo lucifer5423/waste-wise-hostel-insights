@@ -17,25 +17,29 @@ const data = [
     name: "Week 1",
     breakfast: 42,
     lunch: 78,
-    dinner: 56
+    dinner: 56,
+    snacks: 25
   },
   {
     name: "Week 2",
     breakfast: 38,
     lunch: 65,
-    dinner: 48
+    dinner: 48,
+    snacks: 22
   },
   {
     name: "Week 3",
     breakfast: 35,
     lunch: 70,
-    dinner: 52
+    dinner: 52,
+    snacks: 28
   },
   {
     name: "Week 4",
     breakfast: 30,
     lunch: 58,
-    dinner: 45
+    dinner: 45,
+    snacks: 20
   }
 ];
 
@@ -58,6 +62,7 @@ const WastageByMealChart = () => {
               <Bar dataKey="breakfast" name="Breakfast" fill="#22c55e" />
               <Bar dataKey="lunch" name="Lunch" fill="#3b82f6" />
               <Bar dataKey="dinner" name="Dinner" fill="#f97316" />
+              <Bar dataKey="snacks" name="Snacks" fill="#a855f7" />
             </BarChart>
           </ResponsiveContainer>
         </div>

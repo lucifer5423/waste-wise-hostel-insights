@@ -8,17 +8,18 @@ import {
   XAxis, 
   YAxis, 
   CartesianGrid, 
-  Tooltip 
+  Tooltip,
+  Legend
 } from "recharts";
 
 const data = [
-  { day: "Mon", amount: 12 },
-  { day: "Tue", amount: 15 },
-  { day: "Wed", amount: 18 },
-  { day: "Thu", amount: 14 },
-  { day: "Fri", amount: 19 },
-  { day: "Sat", amount: 22 },
-  { day: "Sun", amount: 17 }
+  { day: "Mon", amount: 12, breakfast: 3, lunch: 4, dinner: 3, snacks: 2 },
+  { day: "Tue", amount: 15, breakfast: 4, lunch: 5, dinner: 4, snacks: 2 },
+  { day: "Wed", amount: 18, breakfast: 5, lunch: 6, dinner: 5, snacks: 2 },
+  { day: "Thu", amount: 14, breakfast: 3, lunch: 5, dinner: 4, snacks: 2 },
+  { day: "Fri", amount: 19, breakfast: 4, lunch: 7, dinner: 5, snacks: 3 },
+  { day: "Sat", amount: 22, breakfast: 5, lunch: 8, dinner: 6, snacks: 3 },
+  { day: "Sun", amount: 17, breakfast: 4, lunch: 6, dinner: 5, snacks: 2 }
 ];
 
 const WasteTrend = () => {
@@ -36,12 +37,46 @@ const WasteTrend = () => {
               <XAxis dataKey="day" />
               <YAxis label={{ value: 'Waste (kg)', angle: -90, position: 'insideLeft' }} />
               <Tooltip formatter={(value) => `${value} kg`} />
+              <Legend />
               <Line 
                 type="monotone" 
                 dataKey="amount" 
+                name="Total"
                 stroke="#22c55e" 
                 strokeWidth={2}
                 activeDot={{ r: 8 }}
+              />
+              <Line 
+                type="monotone" 
+                dataKey="breakfast" 
+                name="Breakfast"
+                stroke="#3b82f6" 
+                strokeWidth={1}
+                strokeDasharray="5 5"
+              />
+              <Line 
+                type="monotone" 
+                dataKey="lunch" 
+                name="Lunch"
+                stroke="#f97316" 
+                strokeWidth={1}
+                strokeDasharray="3 3"
+              />
+              <Line 
+                type="monotone" 
+                dataKey="dinner" 
+                name="Dinner"
+                stroke="#ef4444" 
+                strokeWidth={1}
+                strokeDasharray="2 2"
+              />
+              <Line 
+                type="monotone" 
+                dataKey="snacks" 
+                name="Snacks"
+                stroke="#a855f7" 
+                strokeWidth={1}
+                strokeDasharray="1 1"
               />
             </LineChart>
           </ResponsiveContainer>
