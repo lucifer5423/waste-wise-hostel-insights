@@ -19,7 +19,7 @@ const data = [
   { name: "Other", value: 5 }
 ];
 
-const COLORS = ['#22c55e', '#16a34a', '#15803d', '#3b82f6', '#1d4ed8', '#7c3aed'];
+const COLORS = ['#0EA5E9', '#F97316', '#8B5CF6', '#D946EF', '#22c55e', '#eab308'];
 
 const TopWastedItems = () => {
   return (
