@@ -6,7 +6,6 @@ import Header from "@/components/layout/Header";
 import StatCard from "@/components/dashboard/StatCard";
 import WastageByMealChart from "@/components/dashboard/WastageByMealChart";
 import TopWastedItems from "@/components/dashboard/TopWastedItems";
-import CsvImport from "@/components/dashboard/CsvImport";
 
 const Index = () => {
   return (
@@ -61,10 +60,6 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
               <WastageByMealChart />
               <TopWastedItems />
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <CsvImport />
             </div>
           </div>
         </main>

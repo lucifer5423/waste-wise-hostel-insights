@@ -37,7 +37,6 @@ const Login = () => {
                 <label htmlFor="username" className="text-sm font-medium">Username</label>
                 <Input
                   id="username"
-                  placeholder="Admin"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -48,7 +47,6 @@ const Login = () => {
                 <Input
                   id="password"
                   type="password"
-                  placeholder="123456"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
