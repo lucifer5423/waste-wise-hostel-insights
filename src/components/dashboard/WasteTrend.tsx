@@ -42,7 +42,7 @@ const WasteTrend = () => {
                 type="monotone" 
                 dataKey="amount" 
                 name="Total"
-                stroke="#0EA5E9" 
+                stroke="#6366F1" 
                 strokeWidth={2}
                 activeDot={{ r: 8 }}
               />
@@ -58,7 +58,7 @@ const WasteTrend = () => {
                 type="monotone" 
                 dataKey="lunch" 
                 name="Lunch"
-                stroke="#F97316" 
+                stroke="#F59E0B" 
                 strokeWidth={1}
                 strokeDasharray="3 3"
               />
@@ -66,7 +66,7 @@ const WasteTrend = () => {
                 type="monotone" 
                 dataKey="dinner" 
                 name="Dinner"
-                stroke="#D946EF" 
+                stroke="#10B981" 
                 strokeWidth={1}
                 strokeDasharray="2 2"
               />
@@ -74,7 +74,7 @@ const WasteTrend = () => {
                 type="monotone" 
                 dataKey="snacks" 
                 name="Snacks"
-                stroke="#22c55e" 
+                stroke="#EC4899" 
                 strokeWidth={1}
                 strokeDasharray="1 1"
               />

@@ -4,9 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 
 const sentimentData = [
-  { label: "Positive", value: 65, color: "bg-wastewise-green-500" },
-  { label: "Neutral", value: 25, color: "bg-blue-500" },
-  { label: "Negative", value: 10, color: "bg-red-500" }
+  { label: "Positive", value: 65, color: "bg-emerald-500" }, // Changed from wastewise-green to emerald
+  { label: "Neutral", value: 25, color: "bg-indigo-500" }, // Changed from blue to indigo
+  { label: "Negative", value: 10, color: "bg-pink-500" } // Changed from red to pink
 ];
 
 const FeedbackSentiment = () => {
@@ -31,12 +31,12 @@ const FeedbackSentiment = () => {
           <div className="border-t pt-4 mt-6">
             <h4 className="font-semibold mb-2">Common Feedback Topics</h4>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-wastewise-green-100 text-wastewise-green-800 rounded-full text-xs">Food Quality</span>
-              <span className="px-3 py-1 bg-wastewise-green-100 text-wastewise-green-800 rounded-full text-xs">Taste</span>
-              <span className="px-3 py-1 bg-wastewise-green-100 text-wastewise-green-800 rounded-full text-xs">Variety</span>
-              <span className="px-3 py-1 bg-wastewise-blue-100 text-wastewise-blue-800 rounded-full text-xs">Serving Size</span>
-              <span className="px-3 py-1 bg-wastewise-blue-100 text-wastewise-blue-800 rounded-full text-xs">Menu Options</span>
-              <span className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">Temperature</span>
+              <span className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs">Food Quality</span>
+              <span className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs">Taste</span>
+              <span className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs">Variety</span>
+              <span className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">Serving Size</span>
+              <span className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs">Menu Options</span>
+              <span className="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">Temperature</span>
             </div>
           </div>
         </div>
