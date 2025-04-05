@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -27,8 +27,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (username: string, password: string): Promise<boolean> => {
-    // Hard-coded credentials as requested
-    if (username === 'Admin' && password === '123456') {
+    // Hard-coded credentials with updated password
+    if (username === 'Admin' && password === '12345') {
       setIsAuthenticated(true);
       localStorage.setItem('isAuthenticated', 'true');
       toast({

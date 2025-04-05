@@ -39,7 +39,7 @@ const Settings = () => {
       return;
     }
 
-    if (currentPassword !== "123456") {
+    if (currentPassword !== "12345") {
       toast({
         title: "Error",
         description: "Current password is incorrect",
