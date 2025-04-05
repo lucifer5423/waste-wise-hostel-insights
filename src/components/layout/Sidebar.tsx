@@ -1,9 +1,10 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
-import { Calendar, ChartPie, Home, MessageSquare, Settings } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ChartPie, Home, MessageSquare, Settings, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
 
 type SidebarItem = {
   name: string;
@@ -28,11 +29,6 @@ const sidebarItems: SidebarItem[] = [
     path: "/feedback",
   },
   {
-    name: "Schedule",
-    icon: Calendar,
-    path: "/schedule",
-  },
-  {
     name: "Settings",
     icon: Settings,
     path: "/settings",
@@ -41,6 +37,13 @@ const sidebarItems: SidebarItem[] = [
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = React.useState(false);
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
   
   return (
     <div 
@@ -73,27 +76,51 @@ const Sidebar = () => {
               to={item.path}
               className={cn(
                 "flex items-center p-3 text-sidebar-foreground hover:bg-sidebar-accent rounded-md transition-colors group",
-                item.path === "/" && "bg-sidebar-accent text-wastewise-green-600"
+                location.pathname === item.path && "bg-sidebar-accent text-wastewise-green-600"
               )}
             >
-              <item.icon className={cn("h-5 w-5", item.path === "/" && "text-wastewise-green-600")} />
+              <item.icon className={cn("h-5 w-5", location.pathname === item.path && "text-wastewise-green-600")} />
               {!collapsed && <span className="ml-3">{item.name}</span>}
             </Link>
           ))}
         </nav>
         
         <div className="p-4 border-t border-border">
-          <div className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-wastewise-green-200 flex items-center justify-center text-wastewise-green-700 font-semibold">
-              A
-            </div>
-            {!collapsed && (
-              <div className="ml-3">
-                <p className="text-sm font-medium">Admin User</p>
-                <p className="text-xs text-sidebar-foreground/60">Hostel Manager</p>
+          <div className="flex items-center justify-between">
+            <div className={cn("flex items-center", collapsed && "justify-center w-full")}>
+              <div className="w-8 h-8 rounded-full bg-wastewise-green-200 flex items-center justify-center text-wastewise-green-700 font-semibold">
+                A
               </div>
+              {!collapsed && (
+                <div className="ml-3">
+                  <p className="text-sm font-medium">Admin User</p>
+                  <p className="text-xs text-sidebar-foreground/60">Hostel Manager</p>
+                </div>
+              )}
+            </div>
+            
+            {!collapsed && (
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={handleLogout}
+                className="text-red-500 hover:bg-red-50 hover:text-red-600"
+              >
+                <LogOut className="h-5 w-5" />
+              </Button>
             )}
           </div>
+          
+          {collapsed && (
+            <Button 
+              variant="ghost"
+              size="icon"
+              onClick={handleLogout}
+              className="mt-2 w-full text-red-500 hover:bg-red-50 hover:text-red-600"
+            >
+              <LogOut className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </div>
     </div>
