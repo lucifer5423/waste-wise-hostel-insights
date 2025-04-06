@@ -16,7 +16,7 @@ const Settings = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, updatePassword } = useAuth();
 
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,31 +39,27 @@ const Settings = () => {
       return;
     }
 
-    if (currentPassword !== "12345") {
-      toast({
-        title: "Error",
-        description: "Current password is incorrect",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
-      // Simulate password change - in a real app, you would call an API
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const success = await updatePassword(currentPassword, newPassword);
       
-      // For demo purposes we're not actually changing the password since
-      // we're using hardcoded values in the auth context
-      toast({
-        title: "Success",
-        description: "Password has been changed successfully",
-      });
-      
-      setCurrentPassword("");
-      setNewPassword("");
-      setConfirmPassword("");
+      if (success) {
+        toast({
+          title: "Success",
+          description: "Password has been changed successfully",
+        });
+        
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+      } else {
+        toast({
+          title: "Error",
+          description: "Current password is incorrect",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       toast({
         title: "Error",
@@ -76,7 +72,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gradient-to-br from-background to-secondary/30">
       <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -84,21 +80,21 @@ const Settings = () => {
         
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6">Settings</h2>
+            <h2 className="text-2xl font-bold mb-6 text-gradient">Settings</h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="animate-fade-in">
-                <CardHeader>
+              <Card className="animate-fade-in glass-card border-primary/10">
+                <CardHeader className="bg-gradient-to-r from-primary/5 to-transparent rounded-t-lg">
                   <CardTitle className="flex items-center gap-2">
                     <Lock className="h-5 w-5 text-primary" />
-                    Change Password
+                    <span>Change Password</span>
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-muted-foreground">
                     Update your account password
                   </CardDescription>
                 </CardHeader>
                 <form onSubmit={handleChangePassword}>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-4 pt-6">
                     <div className="space-y-2">
                       <label htmlFor="current-password" className="text-sm font-medium">Current Password</label>
                       <Input
@@ -106,6 +102,7 @@ const Settings = () => {
                         type="password"
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
+                        className="bg-background/50 backdrop-blur-sm border-primary/10 focus-visible:ring-primary/30"
                         required
                       />
                     </div>
@@ -116,6 +113,7 @@ const Settings = () => {
                         type="password"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
+                        className="bg-background/50 backdrop-blur-sm border-primary/10 focus-visible:ring-primary/30"
                         required
                       />
                     </div>
@@ -126,12 +124,17 @@ const Settings = () => {
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="bg-background/50 backdrop-blur-sm border-primary/10 focus-visible:ring-primary/30"
                         required
                       />
                     </div>
                   </CardContent>
-                  <CardFooter>
-                    <Button type="submit" disabled={isSubmitting}>
+                  <CardFooter className="bg-gradient-to-r from-transparent to-primary/5 rounded-b-lg">
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="bg-primary hover:bg-primary/90"
+                    >
                       {isSubmitting ? "Updating..." : "Change Password"}
                     </Button>
                   </CardFooter>

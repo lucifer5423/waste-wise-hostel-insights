@@ -1,19 +1,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bell, LogOut, Search } from "lucide-react";
-import { useAuth } from "@/context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Bell, Search } from "lucide-react";
 
 const Header = () => {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
-  
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-  
   return (
     <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-14 items-center px-4">
@@ -35,10 +25,6 @@ const Header = () => {
           <Button variant="outline" size="icon">
             <Bell className="h-4 w-4" />
             <span className="sr-only">Notifications</span>
-          </Button>
-          <Button variant="ghost" size="icon" onClick={handleLogout} className="text-red-500 hover:bg-red-50 hover:text-red-600">
-            <LogOut className="h-4 w-4" />
-            <span className="sr-only">Logout</span>
           </Button>
         </div>
       </div>

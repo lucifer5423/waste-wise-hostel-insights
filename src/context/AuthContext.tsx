@@ -6,29 +6,40 @@ type AuthContextType = {
   isAuthenticated: boolean;
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
+  updatePassword: (currentPassword: string, newPassword: string) => Promise<boolean>;
 };
 
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   login: async () => false,
   logout: () => {},
+  updatePassword: async () => false,
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [currentPassword, setCurrentPassword] = useState<string>("12345");
   const { toast } = useToast();
 
   // Check if user is already logged in on component mount
   useEffect(() => {
     const authStatus = localStorage.getItem('isAuthenticated');
+    const storedPassword = localStorage.getItem('userPassword');
+    
     if (authStatus === 'true') {
       setIsAuthenticated(true);
+    }
+    
+    if (storedPassword) {
+      setCurrentPassword(storedPassword);
+    } else {
+      localStorage.setItem('userPassword', currentPassword);
     }
   }, []);
 
   const login = async (username: string, password: string): Promise<boolean> => {
-    // Hard-coded credentials with updated password
-    if (username === 'Admin' && password === '12345') {
+    // Check credentials
+    if (username === 'Admin' && password === currentPassword) {
       setIsAuthenticated(true);
       localStorage.setItem('isAuthenticated', 'true');
       toast({
@@ -54,9 +65,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       description: "You have successfully logged out",
     });
   };
+  
+  const updatePassword = async (oldPassword: string, newPassword: string): Promise<boolean> => {
+    if (oldPassword === currentPassword) {
+      setCurrentPassword(newPassword);
+      localStorage.setItem('userPassword', newPassword);
+      return true;
+    }
+    return false;
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, updatePassword }}>
       {children}
     </AuthContext.Provider>
   );

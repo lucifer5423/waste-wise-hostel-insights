@@ -9,7 +9,7 @@ import TopWastedItems from "@/components/dashboard/TopWastedItems";
 
 const Index = () => {
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gradient-to-br from-background to-secondary/30">
       <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -18,7 +18,7 @@ const Index = () => {
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-6">Dashboard Overview</h2>
+              <h2 className="text-2xl font-bold mb-6 text-gradient">Dashboard Overview</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard 
@@ -27,7 +27,7 @@ const Index = () => {
                   description="vs. last month"
                   change={-12}
                   icon={<ChartPie className="h-6 w-6" />}
-                  className="animate-fade-in"
+                  className="animate-fade-in glass-card"
                 />
                 
                 <StatCard 
@@ -36,7 +36,7 @@ const Index = () => {
                   description="vs. last week"
                   change={5}
                   icon={<ArrowUpRight className="h-6 w-6" />}
-                  className="animate-fade-in [animation-delay:200ms]"
+                  className="animate-fade-in glass-card [animation-delay:200ms]"
                 />
                 
                 <StatCard 
@@ -44,7 +44,7 @@ const Index = () => {
                   value="127" 
                   description="last 30 days"
                   icon={<MessageSquare className="h-6 w-6" />}
-                  className="animate-fade-in [animation-delay:400ms]"
+                  className="animate-fade-in glass-card [animation-delay:400ms]"
                 />
                 
                 <StatCard 
@@ -52,7 +52,7 @@ const Index = () => {
                   value="Today" 
                   description="Dinner service"
                   icon={<CalendarDays className="h-6 w-6" />}
-                  className="animate-fade-in [animation-delay:600ms]"
+                  className="animate-fade-in glass-card [animation-delay:600ms]"
                 />
               </div>
             </div>
