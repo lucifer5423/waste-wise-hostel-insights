@@ -19,8 +19,8 @@ const data = [
   { name: "Other", value: 5 }
 ];
 
-// Updated color palette - soft pastels with better harmony
-const COLORS = ['#6366F1', '#F59E0B', '#10B981', '#EC4899', '#8B5CF6', '#6D28D9'];
+// Updated color palette - using the palette from the provided image
+const COLORS = ['#FFCDB2', '#FFB4A2', '#E5989B', '#A27CB8', '#816EC7', '#B689C0'];
 
 const TopWastedItems = () => {
   return (

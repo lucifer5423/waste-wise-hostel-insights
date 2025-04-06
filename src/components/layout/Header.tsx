@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bell, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 const Header = () => {
   return (
@@ -22,10 +22,7 @@ const Header = () => {
           </div>
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="outline" size="icon">
-            <Bell className="h-4 w-4" />
-            <span className="sr-only">Notifications</span>
-          </Button>
+          {/* Removed the notification icon/button */}
         </div>
       </div>
     </header>

@@ -59,10 +59,10 @@ const WastageByMealChart = () => {
               <YAxis label={{ value: 'Waste (kg)', angle: -90, position: 'insideLeft' }} />
               <Tooltip />
               <Legend />
-              <Bar dataKey="breakfast" name="Breakfast" fill="#6366F1" /> {/* Indigo */}
-              <Bar dataKey="lunch" name="Lunch" fill="#F59E0B" /> {/* Amber */}
-              <Bar dataKey="dinner" name="Dinner" fill="#10B981" /> {/* Emerald */}
-              <Bar dataKey="snacks" name="Snacks" fill="#EC4899" /> {/* Pink */}
+              <Bar dataKey="breakfast" name="Breakfast" fill="#FFCDB2" /> {/* Apricot */}
+              <Bar dataKey="lunch" name="Lunch" fill="#FFB4A2" /> {/* Melon */}
+              <Bar dataKey="dinner" name="Dinner" fill="#E5989B" /> {/* Salmon */}
+              <Bar dataKey="snacks" name="Snacks" fill="#A27CB8" /> {/* Violet */}
             </BarChart>
           </ResponsiveContainer>
         </div>

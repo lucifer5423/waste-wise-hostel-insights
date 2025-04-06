@@ -26,7 +26,7 @@ const StatCard = ({
           <p className="text-sm font-medium text-muted-foreground">{title}</p>
           <h3 className="text-2xl font-bold">{value}</h3>
         </div>
-        {icon && <div className="text-wastewise-green-500">{icon}</div>}
+        {icon && <div className="text-wastewise-salmon">{icon}</div>}
       </div>
       
       {(description || change !== undefined) && (
@@ -34,7 +34,7 @@ const StatCard = ({
           {change !== undefined && (
             <span className={cn(
               "text-xs font-medium",
-              change > 0 ? "text-red-500" : "text-wastewise-green-500"
+              change > 0 ? "text-wastewise-salmon" : "text-wastewise-violet"
             )}>
               {change > 0 ? "↑" : "↓"} {Math.abs(change)}%
             </span>

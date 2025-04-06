@@ -79,6 +79,12 @@ export default {
 						800: '#1e40af',
 						900: '#1e3a8a',
 					},
+					// New custom palette colors from the image
+					apricot: '#FFCDB2',
+					melon: '#FFB4A2',
+					salmon: '#E5989B',
+					violet: '#A27CB8',
+					amethyst: '#816EC7',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

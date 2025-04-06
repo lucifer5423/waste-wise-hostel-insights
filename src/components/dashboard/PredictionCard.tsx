@@ -58,8 +58,8 @@ const PredictionCard = () => {
               <div className="text-right">
                 <span className={`text-xs px-2 py-1 rounded-full ${
                   prediction.confidence === "High" 
-                    ? "bg-wastewise-green-100 text-wastewise-green-800" 
-                    : "bg-yellow-100 text-yellow-800"
+                    ? "bg-wastewise-apricot/20 text-wastewise-salmon" 
+                    : "bg-wastewise-melon/20 text-wastewise-salmon"
                 }`}>
                   {prediction.confidence} confidence
                 </span>
