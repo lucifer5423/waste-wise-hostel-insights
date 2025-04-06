@@ -112,7 +112,7 @@ const Sidebar = () => {
                 variant="ghost" 
                 size="icon"
                 onClick={handleLogout}
-                className="text-wastewise-salmon hover:bg-wastewise-salmon/10 hover:text-wastewise-violet"
+                className="text-red-500 hover:bg-red-500/10 hover:text-red-600"
               >
                 <LogOut className="h-5 w-5" />
               </Button>
@@ -124,7 +124,7 @@ const Sidebar = () => {
               variant="ghost"
               size="icon"
               onClick={handleLogout}
-              className="mt-2 w-full text-wastewise-salmon hover:bg-wastewise-salmon/10 hover:text-wastewise-violet"
+              className="mt-2 w-full text-red-500 hover:bg-red-500/10 hover:text-red-600"
             >
               <LogOut className="h-5 w-5" />
             </Button>
