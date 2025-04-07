@@ -19,7 +19,7 @@ const data = [
   { name: "Other", value: 5 }
 ];
 
-// Updated color palette - using the palette from the provided image
+// Updated color palette - changing the "Other" color (last one) to a different shade
 const COLORS = ['#FFCDB2', '#FFB4A2', '#E5989B', '#A27CB8', '#816EC7', '#B689C0'];
 
 const TopWastedItems = () => {
@@ -44,7 +44,10 @@ const TopWastedItems = () => {
                 label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
               >
                 {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  <Cell 
+                    key={`cell-${index}`} 
+                    fill={entry.name === "Other" ? "#D946EF" : COLORS[index % COLORS.length]} 
+                  />
                 ))}
               </Pie>
               <Tooltip formatter={(value) => `${value} kg`} />
