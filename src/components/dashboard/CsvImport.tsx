@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { FileText, Upload, CheckCircle, AlertCircle } from "lucide-react";
+import { FileText, Upload, CheckCircle, AlertCircle, Download } from "lucide-react";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 const CsvImport = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -89,6 +90,36 @@ const CsvImport = () => {
     }
   };
 
+  const handleDownloadTemplate = () => {
+    // Create CSV content with headers and sample data
+    const headers = "date,meal_type,food_item,weight\n";
+    const sampleData = [
+      "2025-04-01,breakfast,bread,0.5",
+      "2025-04-01,lunch,rice,0.75",
+      "2025-04-01,dinner,vegetables,0.3",
+      "2025-04-02,breakfast,fruits,0.4",
+    ].join("\n");
+    
+    const csvContent = headers + sampleData;
+    
+    // Create a Blob with the CSV content
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    
+    // Create a download link and trigger click
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    
+    link.setAttribute("href", url);
+    link.setAttribute("download", "food_wastage_template.csv");
+    link.style.visibility = "hidden";
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast.success("Template downloaded successfully");
+  };
+
   return (
     <Card className="dashboard-card animate-fade-in">
       <CardHeader>
@@ -153,7 +184,14 @@ const CsvImport = () => {
         </button>
       </CardContent>
       <CardFooter className="text-sm text-gray-500 border-t pt-4">
-        <p>Need help with the CSV format? <a href="#" className="text-primary underline">Download template</a></p>
+        <Button 
+          variant="link" 
+          className="p-0 h-auto gap-1 flex items-center text-primary" 
+          onClick={handleDownloadTemplate}
+        >
+          <Download className="h-4 w-4" />
+          Download CSV template
+        </Button>
       </CardFooter>
     </Card>
   );
