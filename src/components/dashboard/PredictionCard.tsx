@@ -1,33 +1,20 @@
 
-import React from "react";
+import React, { useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-const predictions = [
-  { 
-    day: "Tomorrow", 
-    meal: "Breakfast", 
-    predictedWaste: "10.5kg", 
-    confidence: "High", 
-    trend: "Decreasing"
-  },
-  { 
-    day: "Tomorrow", 
-    meal: "Lunch", 
-    predictedWaste: "18.2kg", 
-    confidence: "Medium", 
-    trend: "Stable"
-  },
-  { 
-    day: "Tomorrow", 
-    meal: "Dinner", 
-    predictedWaste: "15.7kg", 
-    confidence: "High", 
-    trend: "Increasing"
-  },
-];
+import { sampleHistoricalData, predictFoodWaste, generateRecommendation } from "@/utils/mlUtils";
 
 const PredictionCard = () => {
+  // Use the ML model to generate predictions based on sample data
+  const predictions = useMemo(() => {
+    return predictFoodWaste(sampleHistoricalData);
+  }, []);
+
+  // Generate a recommendation based on predictions
+  const recommendation = useMemo(() => {
+    return generateRecommendation(predictions);
+  }, [predictions]);
+
   return (
     <Card className="dashboard-card">
       <CardHeader>
@@ -70,7 +57,7 @@ const PredictionCard = () => {
           <div className="mt-4 bg-muted/50 p-3 rounded-md">
             <h4 className="font-medium mb-1">Recommendation</h4>
             <p className="text-sm text-muted-foreground">
-              Consider reducing breakfast portions by 15% tomorrow based on predicted lower consumption patterns.
+              {recommendation}
             </p>
           </div>
         </div>
