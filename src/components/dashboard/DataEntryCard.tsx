@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,11 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
 const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snacks"];
-const foodItems = ["Rice", "Bread", "Vegetables", "Meat", "Fruits", "Soup", "Dessert"];
+const foodItems = [
+  "Rice", "Bread", "Chapati", "Noodles", "Pasta", 
+  "Vegetables", "Salad", "Meat", "Fish", "Eggs", 
+  "Fruits", "Soup", "Dessert", "Snack Items", "Beverages"
+];
 
 const DataEntryCard = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -41,8 +44,7 @@ const DataEntryCard = () => {
       description: `Added ${quantity}kg of ${foodItem} waste for ${mealType} on ${format(date, "PPP")}`,
     });
     
-    // Clear form
-    setMealType("");
+    // Clear form (keeping the date and meal type for convenience when entering multiple items)
     setFoodItem("");
     setQuantity("");
   };
@@ -50,8 +52,8 @@ const DataEntryCard = () => {
   return (
     <Card className="dashboard-card">
       <CardHeader>
-        <CardTitle>Record Food Wastage</CardTitle>
-        <CardDescription>Enter details about wasted food items</CardDescription>
+        <CardTitle>Record Food Item Wastage</CardTitle>
+        <CardDescription>Track wastage by specific food items for better inventory management</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">

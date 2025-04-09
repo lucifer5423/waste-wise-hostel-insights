@@ -53,12 +53,35 @@ const CsvImport = () => {
             throw new Error('CSV file is empty or has invalid format');
           }
           
-          const headers = lines[0].split(',');
-          const requiredHeaders = ['date', 'meal_type', 'food_item', 'weight'];
+          const headers = lines[0].toLowerCase().split(',');
+          const requiredHeaders = ['date', 'meal_type', 'weight'];
           
           const missingHeaders = requiredHeaders.filter(h => !headers.includes(h));
           if (missingHeaders.length > 0) {
             throw new Error(`Missing required headers: ${missingHeaders.join(', ')}`);
+          }
+          
+          // Validate that meal_type contains only allowed values
+          const allowedMealTypes = ['breakfast', 'lunch', 'dinner', 'snacks'];
+          let hasInvalidMealType = false;
+          
+          for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue; // Skip empty lines
+            
+            const values = lines[i].split(',');
+            const mealTypeIndex = headers.indexOf('meal_type');
+            
+            if (mealTypeIndex >= 0 && values.length > mealTypeIndex) {
+              const mealType = values[mealTypeIndex].toLowerCase().trim();
+              if (!allowedMealTypes.includes(mealType)) {
+                hasInvalidMealType = true;
+                break;
+              }
+            }
+          }
+          
+          if (hasInvalidMealType) {
+            throw new Error('Invalid meal type found. Allowed types: breakfast, lunch, dinner, snacks');
           }
           
           // If we got this far, the file format looks good
@@ -66,7 +89,7 @@ const CsvImport = () => {
           toast.success("CSV file imported successfully!");
           
           // In a real app, you would process the data and update your state/database
-          console.log(`Imported data from ${file.name} with ${lines.length - 1} records`);
+          console.log(`Imported historical data from ${file.name} with ${lines.length - 1} records`);
         } catch (err) {
           setError((err as Error).message);
           toast.error("Error processing CSV file");
@@ -91,13 +114,17 @@ const CsvImport = () => {
   };
 
   const handleDownloadTemplate = () => {
-    // Create CSV content with headers and sample data
-    const headers = "date,meal_type,food_item,weight\n";
+    // Create CSV content with headers and sample data for historical data
+    const headers = "date,meal_type,weight\n";
     const sampleData = [
-      "2025-04-01,breakfast,bread,0.5",
-      "2025-04-01,lunch,rice,0.75",
-      "2025-04-01,dinner,vegetables,0.3",
-      "2025-04-02,breakfast,fruits,0.4",
+      "2024-04-01,breakfast,10.5",
+      "2024-04-01,lunch,15.2",
+      "2024-04-01,dinner,12.8",
+      "2024-04-01,snacks,5.3",
+      "2024-04-02,breakfast,9.8",
+      "2024-04-02,lunch,14.6",
+      "2024-04-02,dinner,13.1",
+      "2024-04-02,snacks,4.9"
     ].join("\n");
     
     const csvContent = headers + sampleData;
@@ -110,7 +137,7 @@ const CsvImport = () => {
     const url = URL.createObjectURL(blob);
     
     link.setAttribute("href", url);
-    link.setAttribute("download", "food_wastage_template.csv");
+    link.setAttribute("download", "historical_food_wastage_template.csv");
     link.style.visibility = "hidden";
     
     document.body.appendChild(link);
@@ -128,7 +155,7 @@ const CsvImport = () => {
           Import Historical Data
         </CardTitle>
         <CardDescription>
-          Upload CSV files with wastage data from previous months
+          Upload CSV files with historical meal-type wastage data from the past year
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -142,7 +169,7 @@ const CsvImport = () => {
           </div>
           
           <p className="text-sm text-gray-500 mb-4">
-            Upload a CSV file with columns: date, meal_type, food_item, weight
+            Upload a CSV file with columns: date, meal_type, weight (kg)
           </p>
           
           <Input
@@ -178,7 +205,7 @@ const CsvImport = () => {
           ) : (
             <>
               <Upload className="h-4 w-4" />
-              Upload Data
+              Upload Historical Data
             </>
           )}
         </button>

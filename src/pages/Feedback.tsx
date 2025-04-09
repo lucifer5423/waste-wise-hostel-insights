@@ -4,6 +4,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import DataEntryCard from "@/components/dashboard/DataEntryCard";
 import PredictionCard from "@/components/dashboard/PredictionCard";
+import CsvImport from "@/components/dashboard/CsvImport";
 
 const Feedback = () => {
   return (
@@ -21,6 +22,14 @@ const Feedback = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                 <DataEntryCard />
                 <PredictionCard />
+              </div>
+              
+              <div className="mt-8">
+                <h3 className="text-xl font-semibold mb-4">Historical Data Import</h3>
+                <p className="text-gray-600 mb-4">
+                  Import historical data from the past year to analyze waste patterns by meal type.
+                </p>
+                <CsvImport />
               </div>
             </div>
           </div>
