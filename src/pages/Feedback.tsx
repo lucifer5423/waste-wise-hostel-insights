@@ -28,6 +28,9 @@ const Feedback = () => {
                 <h3 className="text-xl font-semibold mb-4">Historical Data Import</h3>
                 <p className="text-gray-600 mb-4">
                   Import historical data from the past year to analyze waste patterns by meal type.
+                  <span className="block text-sm text-primary mt-1">
+                    New: We can now automatically convert various CSV formats to match our system requirements!
+                  </span>
                 </p>
                 <CsvImport />
               </div>
