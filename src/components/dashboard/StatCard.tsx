@@ -34,7 +34,7 @@ const StatCard = ({
           {change !== undefined && (
             <span className={cn(
               "text-xs font-medium",
-              change > 0 ? "text-wastewise-salmon" : "text-wastewise-violet"
+              change > 0 ? "text-green-600" : "text-red-600"
             )}>
               {change > 0 ? "↑" : "↓"} {Math.abs(change)}%
             </span>
