@@ -1,7 +1,6 @@
-
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ChartPie, Home, MessageSquare, Settings, LogOut, FileText } from "lucide-react";
+import { ChartPie, Home, Settings, LogOut, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
@@ -27,11 +26,6 @@ const sidebarItems: SidebarItem[] = [
     name: "Food Wastage",
     icon: FileText,
     path: "/food-wastage",
-  },
-  {
-    name: "Feedback",
-    icon: MessageSquare,
-    path: "/feedback",
   },
   {
     name: "Settings",

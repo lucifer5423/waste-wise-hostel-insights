@@ -8,11 +8,11 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Index from "./pages/Index";
 import Analytics from "./pages/Analytics";
-import Feedback from "./pages/Feedback";
 import FoodWastage from "./pages/FoodWastage";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import StudentFeedback from "./pages/StudentFeedback";
 
 const queryClient = new QueryClient();
 
@@ -25,11 +25,11 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/student-feedback" element={<StudentFeedback />} />
             
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<Index />} />
               <Route path="/analytics" element={<Analytics />} />
-              <Route path="/feedback" element={<Feedback />} />
               <Route path="/food-wastage" element={<FoodWastage />} />
               <Route path="/settings" element={<Settings />} />
             </Route>
