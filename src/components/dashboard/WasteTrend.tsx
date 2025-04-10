@@ -11,11 +11,15 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { generateWeeklyWasteData, sampleHistoricalData } from "@/utils/mlUtils";
+import { generateWeeklyWasteData } from "@/utils/mlUtils";
+import { useWastageData } from "@/context/DataContext";
 
 const WasteTrend = () => {
-  // Use the ML utility to generate weekly waste data
-  const data = generateWeeklyWasteData(sampleHistoricalData);
+  // Use the real data from our context
+  const { wastageData } = useWastageData();
+  
+  // Use the ML utility to generate weekly waste data from real data
+  const data = generateWeeklyWasteData(wastageData);
 
   return (
     <Card className="dashboard-card">

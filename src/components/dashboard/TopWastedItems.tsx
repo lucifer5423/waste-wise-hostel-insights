@@ -9,11 +9,15 @@ import {
   Tooltip, 
   Legend 
 } from "recharts";
-import { calculateTopWastedItems, sampleHistoricalData } from "@/utils/mlUtils";
+import { calculateTopWastedItems } from "@/utils/mlUtils";
+import { useWastageData } from "@/context/DataContext";
 
 const TopWastedItems = () => {
-  // Use the ML utility to calculate top wasted items from sample data
-  const data = calculateTopWastedItems(sampleHistoricalData);
+  // Use the real data from our context
+  const { wastageData } = useWastageData();
+  
+  // Use the ML utility to calculate top wasted items from real data
+  const data = calculateTopWastedItems(wastageData);
   
   // Updated color palette
   const COLORS = ['#FFCDB2', '#FFB4A2', '#E5989B', '#A27CB8', '#816EC7', '#B689C0', '#D946EF', '#9E77ED'];

@@ -11,11 +11,15 @@ import {
   Tooltip, 
   Legend 
 } from "recharts";
-import { calculateMonthlyAverages, sampleHistoricalData } from "@/utils/mlUtils";
+import { calculateMonthlyAverages } from "@/utils/mlUtils";
+import { useWastageData } from "@/context/DataContext";
 
 const WastageByMealChart = () => {
-  // Use the ML utility to calculate monthly averages from the sample data
-  const data = calculateMonthlyAverages(sampleHistoricalData);
+  // Use the real data from our context
+  const { wastageData } = useWastageData();
+  
+  // Use the ML utility to calculate monthly averages from the real data
+  const data = calculateMonthlyAverages(wastageData);
   
   return (
     <Card className="dashboard-card">

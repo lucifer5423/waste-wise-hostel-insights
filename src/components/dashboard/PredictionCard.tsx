@@ -2,13 +2,17 @@
 import React, { useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { sampleHistoricalData, predictFoodWaste, generateRecommendation } from "@/utils/mlUtils";
+import { predictFoodWaste, generateRecommendation } from "@/utils/mlUtils";
+import { useWastageData } from "@/context/DataContext";
 
 const PredictionCard = () => {
-  // Use the ML model to generate predictions based on sample data
+  // Use the real data from our context
+  const { wastageData } = useWastageData();
+  
+  // Use the ML model to generate predictions based on real data
   const predictions = useMemo(() => {
-    return predictFoodWaste(sampleHistoricalData);
-  }, []);
+    return predictFoodWaste(wastageData);
+  }, [wastageData]);
 
   // Generate a recommendation based on predictions
   const recommendation = useMemo(() => {

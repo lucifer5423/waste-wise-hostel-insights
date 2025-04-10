@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { convertCsvFormat } from "@/utils/csvUtils";
+import { useWastageData } from "@/context/DataContext";
 
 export const useCsvImport = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -11,6 +12,7 @@ export const useCsvImport = () => {
   const [showConversionDialog, setShowConversionDialog] = useState(false);
   const [convertedCsvContent, setConvertedCsvContent] = useState<string>("");
   const [originalCsvContent, setOriginalCsvContent] = useState<string>("");
+  const { setWastageData } = useWastageData();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -40,6 +42,29 @@ export const useCsvImport = () => {
       toast.error(result.message);
       return false;
     }
+  };
+
+  const csvToData = (csvContent: string) => {
+    const lines = csvContent.trim().split('\n');
+    const headers = lines[0].toLowerCase().split(',').map(h => h.trim());
+    const dateIndex = headers.indexOf('date');
+    const mealTypeIndex = headers.indexOf('meal_type');
+    const weightIndex = headers.indexOf('weight');
+
+    const data = [];
+    for (let i = 1; i < lines.length; i++) {
+      if (!lines[i].trim()) continue;
+      
+      const values = lines[i].split(',').map(v => v.trim());
+      if (values.length <= Math.max(dateIndex, mealTypeIndex, weightIndex)) continue;
+      
+      data.push({
+        date: values[dateIndex],
+        meal_type: values[mealTypeIndex].toLowerCase(),
+        weight: parseFloat(values[weightIndex]) || 0
+      });
+    }
+    return data;
   };
 
   const handleUpload = async () => {
@@ -101,8 +126,10 @@ export const useCsvImport = () => {
               }
             } else {
               // Everything is valid
+              const importedData = csvToData(csvData);
+              setWastageData(importedData);
               setIsSuccess(true);
-              toast.success("CSV file imported successfully!");
+              toast.success("CSV file imported successfully and data updated!");
               console.log(`Imported historical data from ${file.name} with ${lines.length - 1} records`);
             }
           }
@@ -131,8 +158,13 @@ export const useCsvImport = () => {
 
   const handleUseConvertedData = () => {
     setShowConversionDialog(false);
+    
+    // Process the converted data
+    const importedData = csvToData(convertedCsvContent);
+    setWastageData(importedData);
+    
     setIsSuccess(true);
-    toast.success("Converted CSV file imported successfully!");
+    toast.success("Converted CSV file imported successfully and data updated!");
     
     // Here you would normally process the converted data
     const lines = convertedCsvContent.split('\n');
