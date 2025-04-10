@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import StatCard from "@/components/dashboard/StatCard";
 import WastageByMealChart from "@/components/dashboard/WastageByMealChart";
 import TopWastedItems from "@/components/dashboard/TopWastedItems";
+import PredictionCard from "@/components/dashboard/PredictionCard";
 
 const Index = () => {
   return (
@@ -60,6 +61,10 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
               <WastageByMealChart />
               <TopWastedItems />
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <PredictionCard />
             </div>
           </div>
         </main>

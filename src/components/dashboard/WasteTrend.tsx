@@ -11,18 +11,12 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-
-const data = [
-  { day: "Mon", amount: 12, breakfast: 3, lunch: 4, dinner: 3, snacks: 2 },
-  { day: "Tue", amount: 15, breakfast: 4, lunch: 5, dinner: 4, snacks: 2 },
-  { day: "Wed", amount: 18, breakfast: 5, lunch: 6, dinner: 5, snacks: 2 },
-  { day: "Thu", amount: 14, breakfast: 3, lunch: 5, dinner: 4, snacks: 2 },
-  { day: "Fri", amount: 19, breakfast: 4, lunch: 7, dinner: 5, snacks: 3 },
-  { day: "Sat", amount: 22, breakfast: 5, lunch: 8, dinner: 6, snacks: 3 },
-  { day: "Sun", amount: 17, breakfast: 4, lunch: 6, dinner: 5, snacks: 2 }
-];
+import { generateWeeklyWasteData, sampleHistoricalData } from "@/utils/mlUtils";
 
 const WasteTrend = () => {
+  // Use the ML utility to generate weekly waste data
+  const data = generateWeeklyWasteData(sampleHistoricalData);
+
   return (
     <Card className="dashboard-card">
       <CardHeader>

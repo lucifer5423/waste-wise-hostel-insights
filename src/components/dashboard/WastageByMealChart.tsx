@@ -11,53 +11,26 @@ import {
   Tooltip, 
   Legend 
 } from "recharts";
-
-const data = [
-  {
-    name: "Week 1",
-    breakfast: 42,
-    lunch: 78,
-    dinner: 56,
-    snacks: 25
-  },
-  {
-    name: "Week 2",
-    breakfast: 38,
-    lunch: 65,
-    dinner: 48,
-    snacks: 22
-  },
-  {
-    name: "Week 3",
-    breakfast: 35,
-    lunch: 70,
-    dinner: 52,
-    snacks: 28
-  },
-  {
-    name: "Week 4",
-    breakfast: 30,
-    lunch: 58,
-    dinner: 45,
-    snacks: 20
-  }
-];
+import { calculateMonthlyAverages, sampleHistoricalData } from "@/utils/mlUtils";
 
 const WastageByMealChart = () => {
+  // Use the ML utility to calculate monthly averages from the sample data
+  const data = calculateMonthlyAverages(sampleHistoricalData);
+  
   return (
     <Card className="dashboard-card">
       <CardHeader>
         <CardTitle>Wastage by Meal Type</CardTitle>
-        <CardDescription>Monthly breakdown of food waste by meal period</CardDescription>
+        <CardDescription>Monthly breakdown of food waste by meal period (kg)</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
+              <XAxis dataKey="month" />
               <YAxis label={{ value: 'Waste (kg)', angle: -90, position: 'insideLeft' }} />
-              <Tooltip />
+              <Tooltip formatter={(value) => `${value} kg`} />
               <Legend />
               <Bar dataKey="breakfast" name="Breakfast" fill="#FFCDB2" /> {/* Apricot */}
               <Bar dataKey="lunch" name="Lunch" fill="#FFB4A2" /> {/* Melon */}

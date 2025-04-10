@@ -9,25 +9,20 @@ import {
   Tooltip, 
   Legend 
 } from "recharts";
-
-const data = [
-  { name: "Rice", value: 35 },
-  { name: "Vegetables", value: 25 },
-  { name: "Bread", value: 15 },
-  { name: "Meat", value: 12 },
-  { name: "Fruits", value: 8 },
-  { name: "Other", value: 5 }
-];
-
-// Updated color palette - changing the "Other" color (last one) to a different shade
-const COLORS = ['#FFCDB2', '#FFB4A2', '#E5989B', '#A27CB8', '#816EC7', '#B689C0'];
+import { calculateTopWastedItems, sampleHistoricalData } from "@/utils/mlUtils";
 
 const TopWastedItems = () => {
+  // Use the ML utility to calculate top wasted items from sample data
+  const data = calculateTopWastedItems(sampleHistoricalData);
+  
+  // Updated color palette
+  const COLORS = ['#FFCDB2', '#FFB4A2', '#E5989B', '#A27CB8', '#816EC7', '#B689C0', '#D946EF', '#9E77ED'];
+
   return (
     <Card className="dashboard-card">
       <CardHeader>
         <CardTitle>Top Wasted Food Items</CardTitle>
-        <CardDescription>Most commonly wasted food items this month</CardDescription>
+        <CardDescription>Most commonly wasted food items this year</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
@@ -46,7 +41,7 @@ const TopWastedItems = () => {
                 {data.map((entry, index) => (
                   <Cell 
                     key={`cell-${index}`} 
-                    fill={entry.name === "Other" ? "#D946EF" : COLORS[index % COLORS.length]} 
+                    fill={COLORS[index % COLORS.length]} 
                   />
                 ))}
               </Pie>
