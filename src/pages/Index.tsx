@@ -1,12 +1,11 @@
 
 import React from "react";
-import { ArrowDownRight, ArrowUpRight, CalendarDays, ChartPie, MessageSquare } from "lucide-react";
+import { ChartPie, MessageSquare, CalendarDays } from "lucide-react";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import StatCard from "@/components/dashboard/StatCard";
 import WastageByMealChart from "@/components/dashboard/WastageByMealChart";
 import TopWastedItems from "@/components/dashboard/TopWastedItems";
-import PredictionCard from "@/components/dashboard/PredictionCard";
 
 const Index = () => {
   return (
@@ -21,7 +20,7 @@ const Index = () => {
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-6 text-gradient">Dashboard Overview</h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <StatCard 
                   title="Total Waste This Month" 
                   value="245.8 kg" 
@@ -29,15 +28,6 @@ const Index = () => {
                   change={-12}
                   icon={<ChartPie className="h-6 w-6" />}
                   className="animate-fade-in glass-card"
-                />
-                
-                <StatCard 
-                  title="Average Daily Waste" 
-                  value="8.2 kg" 
-                  description="vs. last week"
-                  change={5}
-                  icon={<ArrowUpRight className="h-6 w-6" />}
-                  className="animate-fade-in glass-card [animation-delay:200ms]"
                 />
                 
                 <StatCard 
@@ -61,10 +51,6 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
               <WastageByMealChart />
               <TopWastedItems />
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              <PredictionCard />
             </div>
           </div>
         </main>

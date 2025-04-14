@@ -3,7 +3,6 @@ import React from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import DataEntryCard from "@/components/dashboard/DataEntryCard";
-import CsvImport from "@/components/dashboard/CsvImport";
 
 const FoodWastage = () => {
   return (
@@ -18,9 +17,8 @@ const FoodWastage = () => {
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-6">Food Wastage Recording</h2>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div className="max-w-2xl mx-auto">
                 <DataEntryCard />
-                <CsvImport />
               </div>
             </div>
           </div>

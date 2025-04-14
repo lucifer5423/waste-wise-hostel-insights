@@ -1,4 +1,3 @@
-
 /**
  * ML utilities for food waste prediction using linear regression
  */
@@ -10,10 +9,6 @@ export const sampleHistoricalData = [
   { date: '2024-01-01', meal_type: 'lunch', weight: 18.2 },
   { date: '2024-01-01', meal_type: 'dinner', weight: 15.7 },
   { date: '2024-01-01', meal_type: 'snacks', weight: 5.3 },
-  { date: '2024-01-02', meal_type: 'breakfast', weight: 11.8 },
-  { date: '2024-01-02', meal_type: 'lunch', weight: 17.9 },
-  { date: '2024-01-02', meal_type: 'dinner', weight: 16.1 },
-  { date: '2024-01-02', meal_type: 'snacks', weight: 4.8 },
   { date: '2024-01-15', meal_type: 'breakfast', weight: 11.4 },
   { date: '2024-01-15', meal_type: 'lunch', weight: 17.5 },
   { date: '2024-01-15', meal_type: 'dinner', weight: 15.2 },

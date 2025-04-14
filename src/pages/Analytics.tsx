@@ -2,10 +2,8 @@
 import React from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
-import WasteTrend from "@/components/dashboard/WasteTrend";
 import FeedbackSentiment from "@/components/dashboard/FeedbackSentiment";
 import PredictionCard from "@/components/dashboard/PredictionCard";
-import WastageByMealChart from "@/components/dashboard/WastageByMealChart";
 
 const Analytics = () => {
   return (
@@ -21,12 +19,7 @@ const Analytics = () => {
               <h2 className="text-2xl font-bold mb-6">Analytics Overview</h2>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <WasteTrend />
                 <FeedbackSentiment />
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <WastageByMealChart />
                 <PredictionCard />
               </div>
             </div>
